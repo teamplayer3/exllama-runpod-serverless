@@ -1,4 +1,3 @@
 transformers @ git+https://github.com/huggingface/transformers
 runpod @ git+https://github.com/winglian/runpod-python.git@fix-generator-check
---extra-index-url https://huggingface.github.io/autogptq-index/whl/cu118/
-auto-gptq
+auto-gptq @ git+https://github.com/PanQiWei/AutoGPTQ.git@v0.4.2
