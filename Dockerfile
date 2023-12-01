@@ -8,6 +8,7 @@ COPY requirements.txt requirements.txt
 
 # Install Python dependencies (Worker Template)
 RUN pip install --upgrade pip && \
+    pip install ninja && \
     pip install -r requirements.txt
 
 COPY handler.py /data/handler.py
