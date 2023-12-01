@@ -46,6 +46,8 @@ def load_model():
     tokenizer = AutoTokenizer.from_pretrained(
         model, use_fast=True)
 
+    cache_dir = os.environ["TRANSFORMERS_CACHE"]
+
     if quantization == "GPTQ":
         from auto_gptq import AutoGPTQForCausalLM
 
@@ -55,12 +57,12 @@ def load_model():
                                                    device="cuda:0",
                                                    quantize_config=None,
                                                    revision=revision,
-                                                   cache_dir=os.environ["MODEL_CACHE_DIR"])
+                                                   cache_dir=cache_dir)
     else:
         from transformers import AutoModelForCausalLM
 
         model = AutoModelForCausalLM.from_pretrained(
-            model, revision=revision, cache_dir=os.environ["MODEL_CACHE_DIR"], device="cuda:0", trust_remote_code=True)
+            model, revision=revision, cache_dir=cache_dir, device="cuda:0", trust_remote_code=True)
 
     pipe = pipeline("text-generation", model=model,
                     tokenizer=tokenizer, trust_remote_code=True)
